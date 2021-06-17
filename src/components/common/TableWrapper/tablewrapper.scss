@@ -1,0 +1,57 @@
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    .table-component {
+        width: 100%;
+        padding-top: 0px;
+
+        .header:first-child {
+            text-align: left !important;
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+            padding-bottom: 30px !important;
+        }
+        .header {
+            color: #757575;
+            font-size: 13px;
+            font-weight: 500;
+            padding-bottom: 30px;
+            padding-right: 30px;
+            border-bottom: 1px solid #e2e2e2;
+            &.center{
+                padding: 30px 15px;
+                text-align: center;
+            }
+        }
+
+        .element:first-child {
+            font-weight: 600;
+            text-align: left;
+            color: #292f36;
+        }
+        .element {
+            font-size: 15px;
+            border-bottom: 1px solid #e2e2e2;
+            padding: 15px 0px;
+            color: #757575;
+            &.center{
+                text-align: center;
+            }
+            &.clickable:hover{
+                cursor: pointer;
+                background-color:  #F2F2F2;
+                transition: 0.5s;
+            }
+        }
+
+        .delete-card {
+            cursor: pointer;
+            img {
+                width: 20px;
+                height: 20px;
+                object-fit: contain;
+            }
+        }
+    }
+}

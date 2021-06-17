@@ -1,0 +1,44 @@
+.layout-component {
+    display: grid;
+    grid-template:
+        "header header"
+        "sidenav content";
+    grid-gap: 0px;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 80px 2fr;
+    height: 100%;
+
+    & * {
+        box-sizing: border-box;
+    }
+
+    header {
+        z-index: 2;
+        grid-area: header;
+    }
+
+    .sidenav {
+        z-index: 1;
+        grid-area: sidenav;
+    }
+    .content {
+        grid-area: content;
+        overflow: auto;
+        min-height: 100%;
+    }
+
+    @media only screen and (max-width: 800px) {
+        & {
+            display: grid;
+            grid-template:
+                "header"
+                "content";
+            grid-gap: 0px;
+            grid-template-columns: 1fr;
+            grid-template-rows: 80px 2fr;
+        }
+        .sidenav {
+            display: none;
+        }
+    }
+}

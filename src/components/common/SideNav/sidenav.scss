@@ -1,0 +1,37 @@
+@import "../../../designSystem/colors.scss";
+
+.sidenav-component {
+    height: 100%;
+    width: 100%;
+    background-color: $background;
+    box-shadow: -1px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 10px;
+
+    .nav-item {
+        margin:30px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        color: $font-primary;
+        // justify-content: center;
+        text-decoration: none;
+        img {
+            object-fit: contain;
+            width: 25px;
+            margin-right: 20px;
+        }
+
+        &.active {
+            border-left: 3px solid;
+            border: none;
+            border-radius: 19px;
+            background-color: $dark-background;
+        }
+        &:hover {
+            border-left: 3px solid;
+            border: none;
+            border-radius: 19px;
+            background-color: $dark-background;
+        }
+    }
+}

@@ -1,0 +1,66 @@
+@import "../../../designSystem/colors.scss";
+
+.header-component {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 40px 0px 0px;
+    background-color: #F2F2F2;
+    box-sizing: border-box;
+    .titleContainer{
+        background-color: $background;
+        width: 300px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .logo {
+            width: 30px;
+        }
+        .title{
+            margin-left: 20px;
+            color: $font-title;
+            font-weight: 200;
+            font-size: 20px;
+        }
+        .titleBold{
+            margin-left: 15px;
+            color: $font-title;
+            font-weight: 500;
+            font-size: 20px;
+        }
+    }
+    img {
+        width: 130px;
+        object-fit: contain;
+    }
+    .logout{
+        display: flex;
+        color: $background;
+        cursor: pointer;
+        .icon{
+            height: 26px;
+            width: 26px;
+            margin-right: 35px;
+
+        }
+        .circle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 26px;
+            height: 26px;
+            background: #AAAAAA;
+            border-radius: 13px;
+            color: white
+        }
+        .userName{
+            color: $font-primary-black;
+            font-weight: 500;
+            font-size: 20px;
+            margin-left: 35px;
+        }
+    }
+}

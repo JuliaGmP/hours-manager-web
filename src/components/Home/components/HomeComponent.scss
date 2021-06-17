@@ -1,0 +1,162 @@
+@import "../../../designSystem/colors.scss";
+
+.HomeComponent {
+    padding-left: 80px;
+    padding-right: 80px;
+
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    .text{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        color: $font-primary-black
+    }
+    .hours-container{
+        width: 100%;
+        .hoursIcon{
+            width: 20px;
+        } 
+        .listItemTitle{
+            cursor: pointer;
+            display: flex;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #E2E2E2; 
+            .arrowIcon{
+                margin-right: 30px;
+            }
+        }
+        .loading{
+            margin-top: 50px;
+            font-size: 15px;
+            padding: 15px 0px;
+            color: #757575;
+        }
+        .element-user-hours{
+            font-size: 15px;
+            border-bottom: 1px solid #e2e2e2;
+            color: #757575;
+            text-align: center;
+            .hours-item{
+                margin: auto;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+                padding: 5px;
+                &.selected{
+                    background-color: #FCFCFC;
+                    border: 0.5px solid #E4E4E4;
+                }
+                &.clickable:hover {
+                    background-color: #FCFCFC;
+                    border: 0.5px solid #E4E4E4;
+                    cursor: cell
+                }
+                .edit-icon{
+                    width: 13px;
+                    height: 13px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        .projects-list {
+            padding: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 450px;
+            .project-name{
+                width: 100px;
+                font-weight: 600;
+                color: #292f36;
+            }
+            .project-icon{
+                cursor: pointer;
+                width: 15px;
+                height: 15px;
+            }
+        }
+        .edit-hours{
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            border: 1px solid #e2e2e2;
+            border-radius: 20px;
+            padding: 25px;
+            .edit-hours-title{
+                display: flex;
+                justify-content: space-between;
+                font-weight: 600;
+                color: #292f36;
+                border-bottom: 1px solid #e2e2e2;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                padding-left: 10px;
+                .close-icon{
+                    cursor: pointer;
+                    width: 15px;
+                    height: 15px;
+                }
+
+            }
+            .button-wrapper {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+                .button{
+                    width: 120px;
+                }
+            }
+        }
+
+    }
+    .calendar-container{
+        display: flex;
+        justify-content: center; 
+        padding-left: 20px;
+        .listItemTitleCalendar{
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            padding-top: 15px;
+            .arrowIcon{
+                margin-right: 30px;
+            }
+        }
+        .weekItem{
+            cursor: pointer;
+            margin-top:40px;
+            margin-bottom:40px;
+            text-align: center;
+            background-color: #F2F2F2;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            width: 220px;
+        }
+        .weekItemSelected{
+            cursor: pointer;
+            margin-top:40px;
+            margin-bottom:40px;
+            text-align: center;
+            background-color: $primary;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            width: 220px;
+        }
+        .textSelected{
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            color: white
+        }
+    }
+}

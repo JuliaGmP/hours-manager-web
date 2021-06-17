@@ -1,0 +1,41 @@
+@import "../../../../designSystem/colors.scss";
+
+.UsersComponent {
+    padding-left: 80px;
+    padding-right: 80px;
+
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .text{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        color: $font-primary-black
+    }
+    .listItemTitle{
+        display: flex;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E2E2E2; 
+        cursor: pointer;
+        .arrowIcon{
+            margin-right: 30px;
+        }
+    }
+    .delete-icon{
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+    }
+    .loading{
+        margin-top: 50px;
+        font-size: 15px;
+        padding: 15px 0px;
+        color: #757575;
+    }
+    
+    
+}

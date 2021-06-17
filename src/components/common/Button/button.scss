@@ -1,0 +1,52 @@
+@import "../../../designSystem/colors.scss";
+
+.button-component {
+    background-color: $primary;
+    padding: 16px 12px 16px 12px;
+    color: $font-light;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    text-decoration: none;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &.secondary {
+        border: 1px solid $primary;
+        background-color: transparent;
+        color: $primary;
+        &:hover{
+            background-color: #fff;
+        }
+    }
+
+    .icon{
+        margin-right: 10px;
+        width: 15px;
+        height: 15px;
+    }
+
+    &.cancel {
+        color: $font-subtitle;
+        background-color: white;
+        border: 1px solid $font-subtitle; 
+
+
+    }
+
+    &.marginRight{
+        margin-right: 10px;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+    }
+}

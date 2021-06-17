@@ -1,0 +1,81 @@
+@import "../../../../designSystem/colors.scss";
+
+.ProjectsComponent {
+    padding-left: 80px;
+    padding-right: 80px;
+
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .text{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        color: $font-primary-black
+    }
+    .listItemTitle{
+        cursor: pointer;
+        display: flex;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E2E2E2; 
+        .arrowIcon{
+            margin-right: 30px;
+        }
+    }
+    .loading{
+        margin-top: 50px;
+        font-size: 15px;
+        padding: 15px 0px;
+        color: #757575;
+    }
+    .loading-users{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .users-container{
+        display: flex;
+        flex-direction: row;
+    }
+    .delete-icon{
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+    }
+    .progress-container{
+        display: flex;
+        width: 100%;
+        .progress-bar-container{
+            flex-direction: column;
+            display: flex;
+            width: 70%;
+            .progress-bar{
+                height: 10px;
+                width: 80%;
+                border-radius: 5px;
+                background-color: #F2F2F2;
+                .progress-bar-green{
+                    background: #BBE28A;
+                    height: 10px;
+                    border-radius: 5px;
+                
+                }
+            
+            } 
+        }
+        .progress-warning-container{
+            display: flex; 
+            padding-left: 10px;
+            padding-right: 40px;
+            flex-direction:column; 
+            width: 20%; 
+            justify-content:center; 
+            align-items:center; 
+            .warning-text{
+                color: #FF3C3C;
+            }
+        }
+    }
+}

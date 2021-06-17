@@ -1,0 +1,150 @@
+@import "../../../designSystem/colors.scss";
+
+
+.user-profile-component {
+    padding-left: 80px;
+    padding-right: 80px;
+
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .user-image{
+        padding-top: 20px;
+        padding-right: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        .edit-image{
+            position: absolute;
+            top: 100px;
+            left: 80px;
+            .edit-icon{
+                cursor: pointer;
+
+                width: 20px;
+            }
+        }
+        .image{
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            margin-bottom: 10px;
+        }
+        .text{
+            color: $font-primary-black;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+    }
+    .user-profile-detail{
+        padding: 20px;
+        width: 50%;
+        .error{
+            color: red;
+            font-size: 16px;
+        }
+        .button-wrapper{
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 15px;
+            .button{
+                padding-top: 0px;
+                padding-bottom: 0px;
+                font-size: 16px;
+                height: 50px;
+                font-weight: 600;
+                &.left-button {
+                    margin-right: 15px;
+                }
+            }
+        }
+        .label{
+            color: $font-subtitle;
+            font-size: 18px;
+            font-weight: 600; 
+            margin-bottom: 20px;
+        }
+        .card-container{
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            &.no-shadow{
+                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+                padding-right: 0px;
+                padding-left: 0px;
+                padding-bottom: 10px;
+                padding-top: 0px;
+
+            }
+            .card-label{
+                display: flex;
+                align-items: center;
+                .card-icon{
+                    width: 20px;
+                    height: 20px;
+                }
+                .label{
+                    margin: auto;
+                    margin-left: 20px;
+                    color: $font-primary-black;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+
+            }
+            .text-data{
+                margin-top: 10px;
+                margin-left: 40px;
+                color: $font-subtitle;
+                font-size: 18px;
+                font-weight: 600; 
+            }
+            .input-component{
+                display: flex;
+                flex-direction: column; 
+                .input-label{
+                    color: $font-primary-black;
+                    font-size: 18px;
+                    font-weight: 600; 
+                }
+                .input-container {
+                    background-color: white;
+                    margin-top: 10px;
+                    height: 50px;
+                    border: 1px solid #AAAAAA; 
+                    padding: 15px;
+                    border-radius: 5px;
+                    color: $font-primary-black;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: space-between;
+                    .input-container-password {
+                        border: none;
+                        width: 100%;
+                        color: $font-primary-black;
+                        align-items: center;
+                    }
+                    &.password{
+                        justify-content: space-between;
+                    }
+                    .password-button{
+                        cursor: pointer;
+                        color: $font-subtitle;
+                        font-size: 16px;
+                        font-weight: 600; 
+                        text-decoration: underline;
+                    }
+
+                }
+            }
+        }
+
+    }
+    
+}

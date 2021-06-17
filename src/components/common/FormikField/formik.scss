@@ -1,0 +1,202 @@
+@import "../../../designSystem/colors.scss";
+.formik-input-component {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .button-wrapper{
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 15px;
+        .button{
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: 16px;
+            height: 50px;
+            font-weight: 600;
+            &.left-button {
+                margin-right: 15px;
+            }
+        }
+    }
+    .input-edit-hours-form-container{
+        background-color: white;
+        border: 1px solid #E5E5E5;
+        padding: 10px;
+        border-radius: 15px;
+        text-align: center;
+    }
+    .input-date-picker-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.year {
+            justify-content: flex-start;
+        }
+        .date-picker-icon{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .date-picker{
+            background: rgba(0,0,0,0);
+            text-align: right;
+            border: none; 
+            width: 90%; 
+            &.year {
+                text-align: left;
+            }          
+            font-size: 15px;
+            color: $font-primary-black;
+        }
+    }
+    .input-hour-container{
+        width: 70px;
+        cursor: pointer;
+        .arrowIcon{
+            cursor: pointer;
+            width: 10px;
+            height: 10px;
+        }
+    }
+    .input-hourText-container{
+        width: 100%;
+        padding-left: 10px;
+        border: 0;
+    }
+
+    .input-schedule-container {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        width: 100%;
+        .element-schedule {
+            font-size: 15px;
+            border-bottom: 1px solid #e2e2e2;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            text-align: center;
+            color: #757575;
+        }
+        .element-schedule:first-child {
+            font-weight: 600;
+            text-align: left;
+            color: #292f36;
+        }
+        .element-add-days {
+            display: flex;
+            padding-top: 15px;
+            padding-left: 15px;
+            color: #292f36;
+        }
+        .element-add-hours {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            text-align: center;
+            width: 110px;
+            border-bottom: 1px solid #e2e2e2;
+        }
+        .binIcon{
+            cursor: pointer;
+            width: 20px;
+        }
+        
+        .arrowIcon{
+            cursor: pointer;
+            width: 5px;
+        }
+    }
+
+    .input-container {
+        background-color: white;
+        width: 100%;
+        height: 60px;
+        border: 1px solid #AAAAAA; 
+        padding: 15px;
+        border-radius: 5px;
+        //color: #AAAAAA;
+        align-items: center;
+
+        &.error {
+            background-color: #efdbdb;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.3;
+            margin-left: 20px;
+        }
+        .input {
+            width: 100%;
+            background-color: inherit;
+            border: none;
+            outline-width: 0;
+            color: $font-primary-black;
+            font-size: 14px;
+        }
+    }
+    .title-input {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: $font-primary-black;
+    }
+    .error-message {
+        padding-left: 5px;
+        padding-top: 5px;
+        // width: '100%';
+        // text-align: center;
+        height: 20px;
+        font-size: 14px;
+        color: red;
+    }
+
+    
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid $font-subtitle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+
+    &.checked {
+        background-color: $background;
+        border-color: $background;
+        color: $light-background;
+    }
+}
+
+.search-icon{
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+.checkbox-items {
+    display: flex;
+    flex-direction: column;
+    
+    .checkbox-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 15px;
+        border-bottom: 1px solid #F7F7F7;
+        padding-bottom: 15px;
+
+
+
+
+        .item-name {
+            margin-left: 20px;
+            font-weight: bold;
+            color: $font-primary-black;
+        }
+    }
+}
+}
