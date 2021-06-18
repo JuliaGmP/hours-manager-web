@@ -4,11 +4,58 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateUser } from "../../../../redux/actions/userActions";
 import { withRouter } from "react-router-dom";
+import {getClients, deleteClient} from "../../../../services/clients"
+import {deleteClientProjects} from "../../../../services/projects"
 
 const ClientsContainer = (props) => {
-    
+    const [data, setData] = useState(false);
+    const [loadingDelete, setLoadingDelete] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [clientToDelete, setClientToDelete] = useState(undefined);
+
+    useEffect(() => {
+        setLoading(true)
+        getAllClients()
+    }, []);
+
+    const getAllClients = async () =>{
+        try{
+            const response = await getClients(props.user.token);
+            if(response.error) throw new Error('Error');
+            setData(response)
+            setLoading(false)
+        }
+        catch(e){
+            console.log('error', e);
+            return;
+        }
+    }
+
+    const deleteClientByID = async (client) => {
+        setLoadingDelete(true)
+        try{
+            const responseDeleteUser = await deleteClient(client.id, props.user.token)
+            const responseDeleteClientProjects = await deleteClientProjects(client.id, props.user.token);
+            if (responseDeleteUser.status === 204) {
+                setData(data.filter((item) => item.id !== client.id))
+                setClientToDelete(undefined)
+            }
+        } 
+        catch(e){
+            console.log('error', e);
+            return;
+        }
+        setLoadingDelete(false)
+    }
+
     return <ClientsComponent 
             history={props.history}
+            loadinig={loading}
+            loadingDelete={loadingDelete}
+            deleteClientByID={deleteClientByID}
+            clientToDelete={clientToDelete}
+            setClientToDelete={setClientToDelete}
+            data={data}
             user={props.user} 
             isAdmin={props.user.admin}
             />;

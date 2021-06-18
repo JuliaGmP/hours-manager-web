@@ -12,9 +12,9 @@ import ModalLayout from "../../../../layouts/ModalLayout/ModalLayout"
 import CreateClientContainer from "../../CreateClient/containers/CreateClientContainer"
 
 const ClientsComponent = (props) => {
-    const [createClientPageVisible, setCreateClientPageVisible] = useState(false);
-    const {history, isAdmin , user} = props;
+    const {history, isAdmin , user, data, loading, deleteClientByID, loadingDelete, setClientToDelete, clientToDelete} = props;
     const [clientToEdit, setClientToEdit] = useState(undefined);
+    const [createClientPageVisible, setCreateClientPageVisible] = useState(false);
 
     return (
         createClientPageVisible ? 
@@ -22,53 +22,25 @@ const ClientsComponent = (props) => {
         :
         <PageLayout title={"Clientes"} isAdmin={isAdmin} addButton onPress={()=>{setCreateClientPageVisible(!createClientPageVisible); setClientToEdit(undefined)}} >
             <div className="ClientsComponent">
-               <ClientList history={history} token={user.token} setClientToEdit={setClientToEdit} setCreateClientPageVisible={setCreateClientPageVisible}/>
+               <ClientList 
+                data={data} 
+                loading={loading} 
+                loadingDelete={loadingDelete}
+                deleteClientByID={deleteClientByID}
+                history={history} 
+                token={user.token} 
+                setClientToEdit={setClientToEdit} 
+                setCreateClientPageVisible={setCreateClientPageVisible}
+                setClientToDelete={setClientToDelete}
+                clientToDelete={clientToDelete}
+                />
             </div> 
         </PageLayout>
     );
 };
 
 const ClientList = (props) =>{
-    const {history, setClientToEdit, token, setCreateClientPageVisible} = props;
-    const [data, setData] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [clientToDelete, setClientToDelete] = useState(undefined);
-    const [loadingDelete, setLoadingDelete] = useState(false);
-
-    useEffect(() => {
-        setLoading(true)
-        getAllClients()
-    }, []);
-
-    const getAllClients = async () =>{
-        try{
-            const response = await getClients(token);
-            if(response.error) throw new Error('Error');
-            setData(response)
-            setLoading(false)
-        }
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-    }
-
-    const deleteClientByID = async (client) => {
-        setLoadingDelete(true)
-        try{
-            const responseDeleteUser = await deleteClient(client.id, token)
-            const responseDeleteClientProjects = await deleteClientProjects(client.id, token);
-            if (responseDeleteUser.status === 204) {
-                setData(data.filter((item) => item.id !== client.id))
-                setClientToDelete(undefined)
-            }
-        } 
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-        setLoadingDelete(false)
-    }
+    const {history, setClientToEdit, token, setCreateClientPageVisible, data, loading, loadingDelete, deleteClientByID, setClientToDelete, clientToDelete} = props;
 
     const handleEditClient = (client) =>{
         setCreateClientPageVisible(true)
