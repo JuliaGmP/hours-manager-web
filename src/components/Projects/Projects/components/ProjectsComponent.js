@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageLayout from "../../../../layouts/PageLayout/PageLayout";
-import {getClients} from "../../../../services/clients"
-import { getProjects, getProjectHours, deleteProject, getStatus} from "../../../../services/projects"
-import { deleteProjectHours } from "../../../../services/hours";
 import {formatHour, toHex} from "../../../../services/utils"
-import {  getUserName } from "../../../../services/users"
 import Circle from "../../../common/Circle/Circle"
 import CreateProjectContainer from "../../CreateProject/container/CreateProjectContainer"
 
@@ -19,10 +15,22 @@ import _ from "lodash";
 import ReactTooltip from 'react-tooltip';
 
 const ProjectsComponent = (props) => {
-    const [createProjectPageVisible, setCreateProjectPageVisible] = useState(false);
-    const {history, user, isAdmin} = props;
+    const {
+        history,
+        user,
+        isAdmin,
+        loading,
+        loadingUsers,
+        clients,
+        projectToDelete,
+        setProjectToDelete,
+        deleteProjectByID,
+        loadingDelete,
+        data,
+        createProjectPageVisible,
+        setCreateProjectPageVisible
+    } = props;
     const [projectToEdit, setProjectToEdit] = useState(undefined);
-    const [disabledSelector, setDisabledSelector] = useState(undefined);
 
     return (
         createProjectPageVisible ? 
@@ -30,7 +38,22 @@ const ProjectsComponent = (props) => {
         :
         <PageLayout title={"Proyectos"} isAdmin={isAdmin} addButton onPress={()=>{setCreateProjectPageVisible(!createProjectPageVisible); setProjectToEdit(undefined)}} >
             <div className="ProjectsComponent">
-                <ProjectList isAdmin={isAdmin} user={user} history={history} token={user.token} setProjectToEdit={setProjectToEdit} setCreateProjectPageVisible={setCreateProjectPageVisible} setDisabledSelector={setDisabledSelector}/>
+                <ProjectList 
+                isAdmin={isAdmin} 
+                data={data} 
+                loading={loading} 
+                loadingUsers={loadingUsers} 
+                clients={clients} 
+                projectToDelete={projectToDelete} 
+                user={user} 
+                history={history} 
+                token={user.token} 
+                setProjectToEdit={setProjectToEdit} 
+                setCreateProjectPageVisible={setCreateProjectPageVisible} 
+                setProjectToDelete={setProjectToDelete}
+                deleteProjectByID={deleteProjectByID}
+                loadingDelete={loadingDelete}
+                />
             </div> 
         </PageLayout>
     );
@@ -38,88 +61,22 @@ const ProjectsComponent = (props) => {
 
 
 const ProjectList = (props) =>{
-    const {history, token, setProjectToEdit, setCreateProjectPageVisible, setDisabledSelector, isAdmin, user} = props;
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [loadingUsers, setLoadingUsers] = useState(true);
-    const [clients, setClients] = useState(null);
-    const [projectToDelete, setProjectToDelete] = useState(undefined);
-    const [loadingDelete, setLoadingDelete] = useState(false);
-
-    useEffect(() => {
-        getAllProjects()
-    }, []);
-
-    useEffect(() => {
-        if(!loading) {
-            getProjectUsers()
-        }
-    }, [loading]);
-
-    const getProjectUsers = async () =>{
-        setLoadingUsers(true)
-        const dataCopy = data;
-        for(const item of dataCopy) {
-            if(item.userIDs !== undefined){
-                item.userNames = []
-                for (const userId of item.userIDs){
-                    try{
-                        const userResponse = await getUserName(userId, token)
-                        if(userResponse.error) throw new Error(userResponse.error)
-                        item.userNames.push(userResponse.name)
-                    } catch (e){
-                        console.log(e)
-                    }
-                }
-            }
-        }
-        setData(dataCopy)
-        setLoadingUsers(false)
-        setDisabledSelector(undefined)
-
-    }
-
-    const getAllProjects = async () =>{
-        setLoading(true)
-        setDisabledSelector(true)
-        try{
-            const clientsResponse = await getClients(token)
-            setClients(clientsResponse)
-            let response;
-            if( isAdmin ) 
-                response = await getProjects(clientsResponse, token); 
-            else    
-                response = await getProjects(clientsResponse, token, user.id); 
-            for(const item of response) {
-                const hours = await getProjectHours(item.id, token);
-                item.hours = hours
-            }
-            if(response.length === 0) setDisabledSelector(undefined)
-            setData(response)
-        }
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-        setLoading(false)
-    }
-
-    const deleteProjectByID = async (client) => {
-        setLoadingDelete(true)
-        try{
-            const responseDeleteUser = await deleteProject(client.id, token)
-            const responseDeleteHours = await deleteProjectHours(client.id, token)
-            if (responseDeleteUser.status === 204) {
-                setData(data.filter((item) => item.id !== client.id))
-                setProjectToDelete(undefined)
-            }
-        } 
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-        setLoadingDelete(false)
-    }
+    const {
+        isAdmin,
+        data,
+        loading,
+        loadingUsers, 
+        clients,
+        projectToDelete, 
+        user, 
+        history,
+        token, 
+        setProjectToEdit,
+        setCreateProjectPageVisible,
+        setProjectToDelete,
+        deleteProjectByID,
+        loadingDelete
+    } = props;
 
     const handleEditProject = (project) =>{
         setCreateProjectPageVisible(true)
