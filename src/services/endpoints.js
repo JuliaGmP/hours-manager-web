@@ -4,7 +4,6 @@ const routes = {
     users: "/users",
     userCalendars: "/user-calendars",
     hours: "/hours",
-    tenants: "/tenants",
     roles: "/roles",
     clients: "/clients",
     projects: "/projects",
@@ -31,7 +30,6 @@ export const endpoints = {
     projects_gestor_chart: BASE_URL + routes.projects + "/gestorChart", // + {tenantID} GET
     projects_time_chart: BASE_URL + routes.projects + "/timeChart", // + {tenantID} GET
 
-    tenants_get_all : BASE_URL + routes.tenants, // GET
     roles: BASE_URL + routes.roles, // + {id} GET
     clients: BASE_URL + routes.clients, // + {id} GET
     projects: BASE_URL + routes.projects, // + {id} GET

@@ -39,10 +39,9 @@ const LoginComponent = (props) => {
                     return(
                         <div className="container">
                             <div className="title">Iniciar sesión</div>
-                            <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: 200, marginBottom: 40 }}>
+                            <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", height: 150, marginBottom: 40 }}>
                                 <FormikField loginStyle name="email" type="text" formik={formik} placeholder={"Email"}/>
                                 <FormikField loginStyle passwordType name="password" type="text" formik={formik} placeholder={"Contraseña"}/>
-                                <div className="forgotPassword">¿Olvidaste tu contraseña?</div>
                             </div>
                             {props.error ? <div className="error">{props.error}</div> : null}
                             <Button
