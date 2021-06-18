@@ -5,16 +5,26 @@ import CreateUserContainer from "../../CreateUser/containers/CreateUserContainer
 
 import TableWrapper from "../../../common/TableWrapper/TableWrapper";
 import {getStringSchedule} from "../../../../services/utils";
-import { getUserCalendar, getUserRole, deleteUser, getUsers } from "../../../../services/users";
-import { deleteUserHours } from "../../../../services/hours";
 import Lottie from 'react-lottie';
 import animationData from '../../../../assets/lottie/loading.json'
 import ModalLayout from "../../../../layouts/ModalLayout/ModalLayout"
 import _ from "lodash";
 
 const UsersComponent = (props) => {
-    const {history, isAdmin , user, getRoles} = props;
-    const [createUserPageVisible, setCreateUserPageVisible] = useState(false);
+    const {
+        history,
+        user,
+        isAdmin,
+        getRoles,
+        loading,
+        userToDelete,
+        setUserToDelete,
+        loadingDelete,
+        data,
+        deleteUserByID,
+        createUserPageVisible,
+        setCreateUserPageVisible
+    } = props;
     const [userToEdit, setUserToEdit] = useState(undefined);
 
 
@@ -24,75 +34,37 @@ const UsersComponent = (props) => {
         :
         <PageLayout title={"Usuarios"} isAdmin={isAdmin} addButton onPress={()=>{setCreateUserPageVisible(!createUserPageVisible); setUserToEdit(undefined)}} >
             <div className="UsersComponent">
-                <UsersList history={history} token={user.token} setCreateUserPageVisible={setCreateUserPageVisible} setUserToEdit={setUserToEdit}/>
+                <UsersList 
+                history={history} 
+                token={user.token} 
+                setCreateUserPageVisible={setCreateUserPageVisible} 
+                setUserToEdit={setUserToEdit}
+                loading={loading}
+                userToDelete={userToDelete}
+                setUserToDelete={setUserToDelete}
+                loadingDelete={loadingDelete}
+                deleteUserByID={deleteUserByID}
+                data={data}
+                />
             </div> 
         </PageLayout>
     );
 };
 
 const UsersList = (props) =>{
-    const {history, setCreateUserPageVisible, token, setUserToEdit} = props;
-    const [data, setData] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [userToDelete, setUserToDelete] = useState(undefined);
-    const [loadingDelete, setLoadingDelete] = useState(false);
+    const {
+        history,
+        token,
+        setCreateUserPageVisible,
+        setUserToEdit,
+        loading,
+        userToDelete,
+        setUserToDelete,
+        loadingDelete,
+        deleteUserByID,
+        data
+    } = props;
 
-    useEffect(() => {
-        setLoading(true)
-        getAllUsers()
-    }, []);
-
-    const getAllUsers = async () =>{
-        try{
-            const response = await getUsers(token);
-            console.log(response)
-            if(response.error) throw new Error('Error');
-            for(const item of response) {
-                const calendar = await getUserCalendarContainer(item.userCalendarID)
-                item.calendar = calendar.schedule
-                const roles = await getUserRoleName(item.rolesID)
-                item.roles = roles
-            }
-            setData(response)
-            setLoading(false)
-        }
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-    }
-
-    const getUserCalendarContainer = async (userCalendarID) => {
-        const response = await getUserCalendar(token, userCalendarID);
-        if(!response.error) return response;
-    }
-
-    
-    const getUserRoleName = async (rolesIDs) => {
-        let roles = []
-        for (const roleId of rolesIDs){
-            const response= await getUserRole(roleId, token)
-            if(!response.error) roles.push(response.role)
-        }
-        return roles;
-    }
-
-    const deleteUserByID = async (user) => {
-        setLoadingDelete(true)
-        try{
-            const responseDeleteUser = await deleteUser(user.id, token)
-            const responseDeleteHours = await deleteUserHours(user.id, token)
-            if (responseDeleteUser.status === 204) {
-                setData(data.filter((item) => item.id !== user.id))
-                setUserToDelete(undefined)
-            }
-        } 
-        catch(e){
-            console.log('error', e);
-            return;
-        }
-        setLoadingDelete(false)
-    }
 
     const handleEditUser = (user) =>{
         setCreateUserPageVisible(true)

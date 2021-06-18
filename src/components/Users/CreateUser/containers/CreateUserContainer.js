@@ -28,7 +28,7 @@ const CreateUserContainer = (props) => {
         setUserRole(response)
     }
 
-    const submit = async ({ name, email, rol, schedule}) => {
+    const submit = async ({ name, email, password, rol, schedule}) => {
         setLoading(true)
         try {
             const userCalendarID = await getCalendar(schedule, user.token);
@@ -46,7 +46,7 @@ const CreateUserContainer = (props) => {
                 const userData = {
                     name: name,
                     email: email,
-                    password: "12345678",
+                    password: password,
                     userCalendarID: userCalendarID,
                     rolesID: [rol.id]
                   };
@@ -84,6 +84,7 @@ const CreateUserContainer = (props) => {
                 getRoles
                 loading={loading}
                 roles={roles}
+                submit={submit}
                 createUserPageVisible={createUserPageVisible} 
                 setCreateUserPageVisible={setCreateUserPageVisible} 
                 userToEdit={userToEdit}

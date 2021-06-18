@@ -13,6 +13,7 @@ const CreateUserComponent = (props) =>{
 
     const initialValues = {
         name:  userToEdit && userToEdit.name ? userToEdit.name : "",
+        password: "",
         email: userToEdit && userToEdit.email ? userToEdit.email : "",
         rol: userToEdit && userToEdit.rolesID ? userRole : "",
         schedule: userToEdit && userToEdit.calendar ? userToEdit.calendar : "",
@@ -21,6 +22,7 @@ const CreateUserComponent = (props) =>{
 
     const schema = Yup.object({
         name: Yup.string().required("Obligatorio"),
+        password: Yup.string().min(8, 'Password must have at least 8 characters'),
         email: Yup.string().required("Obligatorio").email("Introduce un correo electrónico válido."),
         rol: Yup.string().required("Obligatorio"),
         schedule: Yup.array().required("Obligatorio"),
@@ -48,6 +50,10 @@ const CreateUserComponent = (props) =>{
                                     <Grid item xs={6}>
                                         <FormikField label="Nombre" name="name" type="text" formik={formik} placeholder={"Nombre"}/>
                                     </Grid>
+                                    
+                                    {!userToEdit && <Grid item xs={6}>
+                                        <FormikField label="Password" name="password" type="password" formik={formik} placeholder={"Password"}/>
+                                    </Grid>}
                                 </Grid>
                             </Grid>
                             <Grid item xs={12}>
