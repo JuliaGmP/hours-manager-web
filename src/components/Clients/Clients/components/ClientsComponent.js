@@ -12,9 +12,8 @@ import ModalLayout from "../../../../layouts/ModalLayout/ModalLayout"
 import CreateClientContainer from "../../CreateClient/containers/CreateClientContainer"
 
 const ClientsComponent = (props) => {
-    const {history, isAdmin , user, data, loading, deleteClientByID, loadingDelete, setClientToDelete, clientToDelete} = props;
+    const {history, isAdmin , user, data, loading, deleteClientByID, loadingDelete, setClientToDelete, clientToDelete,createClientPageVisible, setCreateClientPageVisible} = props;
     const [clientToEdit, setClientToEdit] = useState(undefined);
-    const [createClientPageVisible, setCreateClientPageVisible] = useState(false);
 
     return (
         createClientPageVisible ? 

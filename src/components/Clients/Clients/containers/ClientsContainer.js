@@ -12,11 +12,17 @@ const ClientsContainer = (props) => {
     const [loadingDelete, setLoadingDelete] = useState(false);
     const [loading, setLoading] = useState(false);
     const [clientToDelete, setClientToDelete] = useState(undefined);
+    const [createClientPageVisible, setCreateClientPageVisible] = useState(false);
 
     useEffect(() => {
         setLoading(true)
         getAllClients()
     }, []);
+
+    useEffect(() => {
+        setLoading(true)
+        getAllClients()
+    }, [createClientPageVisible]);
 
     const getAllClients = async () =>{
         try{
@@ -58,6 +64,8 @@ const ClientsContainer = (props) => {
             data={data}
             user={props.user} 
             isAdmin={props.user.admin}
+            createClientPageVisible={createClientPageVisible}
+            setCreateClientPageVisible={setCreateClientPageVisible}
             />;
 };
 

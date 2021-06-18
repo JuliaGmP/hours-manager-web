@@ -10,14 +10,13 @@ const CreateClientContainer = (props) => {
     const {tenants, user, tenantsSelected, createClientPageVisible,setCreateClientPageVisible, clientToEdit, setClientToEdit} = props;
     const [loading, setLoading] = useState(false);
 
-    const submit = async ({ company, name, web, email, phone}) => {
+    const submit = async ({ name, web, email, phone}) => {
         setLoading(true)
         try {
             const clientData = {
                 name: name,
                 email: email,
                 web: web,
-                idTenant: company.id,
                 phone: phone.toString(),
               };
             let response;
